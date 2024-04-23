@@ -22,7 +22,7 @@
         <div v-for="(item, i) in displayedCharacters" :key="i" class="  bg-gray-700 text-white p-4 rounded-lg shadow-lg">
           <img :src="item.thumbnail.path + '.' + item.thumbnail.extension" alt="Character Thumbnail"
                class="w-full h-[269px] object-cover rounded-lg">
-          <p class="text-center">{{ item.name }}</p>
+          <NuxtLink :to="`/ِDetail/${item.id}`"   class="text-center">{{ item.name }}</NuxtLink>
         </div>
       </div>
     </div>
@@ -59,8 +59,6 @@ const itemsPerPage = 6;
 const fetchCharacters = () => {
 
   marvelStore.fetchCharacters();
-
-
 };
 // search items marvel
 const searchCharacters = async () => {
