@@ -33,10 +33,7 @@ export const useMarvelStore = defineStore({
                 console.error('Error fetching characters:', error);
             }
         },
-        async fetchCharacterById(characterId) {
-            await this.fetchCharacters();
-            return this.characters.find(character => character.id === characterId);
-        },
+
     },
 
 

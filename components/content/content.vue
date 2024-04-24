@@ -53,8 +53,6 @@ const marvelStore = useMarvelStore();
 const currentPage = ref(1);
 const itemsPerPage = 6;
 
-
-
 //run data from backend
 onMounted(() => {
   marvelStore.fetchCharacters();
