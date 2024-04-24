@@ -13,16 +13,13 @@
   <!--  content-->
   <div class="bg-gray-800 h-[80vh]">
     <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
-      <button @click="fetchCharacters"
-              class="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Load Characters
-      </button>
+
 <!--      show data from backend-->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div v-for="(item, i) in displayedCharacters" :key="i" class="  bg-gray-700 text-white p-4 rounded-lg shadow-lg">
+        <div v-for="(item, i) in displayedCharacters" :key="i" class="bg-gray-700 text-white p-4 rounded-lg shadow-lg">
           <img :src="item.thumbnail.path + '.' + item.thumbnail.extension" alt="Character Thumbnail"
                class="w-full h-[269px] object-cover rounded-lg">
-          <NuxtLink :to="`/ِDetail/${item.id}`"   class="text-center">{{ item.name }}</NuxtLink>
+          <NuxtLink :to="`/detail/${item.id}`"  class="text-center">{{ item.name }}</NuxtLink>
         </div>
       </div>
     </div>
@@ -50,16 +47,19 @@ import {useMarvelStore} from '~/stores/useMarvelStore ';
 import {ref} from 'vue';
 
 // variabel
+const specificCharacter = ref(null);
 const searchTerm = ref('');
 const marvelStore = useMarvelStore();
 const currentPage = ref(1);
 const itemsPerPage = 6;
 
-//run data from backend
-const fetchCharacters = () => {
 
+
+//run data from backend
+onMounted(() => {
   marvelStore.fetchCharacters();
-};
+
+});
 // search items marvel
 const searchCharacters = async () => {
   try {
@@ -89,7 +89,9 @@ const changePage = (page) => {
   currentPage.value = page;
 };
 
-
+const loadSpecificCharacter = async (characterId) => {
+  specificCharacter.value = await marvelStore.fetchCharacterById(characterId);
+};
 </script>
 
 <style scoped>

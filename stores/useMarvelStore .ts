@@ -28,9 +28,16 @@ export const useMarvelStore = defineStore({
             try {
                 const response = await axios.get(createURL());
                 this.characters = response.data.data.results;
+                // console.log(response)
             } catch (error) {
                 console.error('Error fetching characters:', error);
             }
         },
+        async fetchCharacterById(characterId) {
+            await this.fetchCharacters();
+            return this.characters.find(character => character.id === characterId);
+        },
     },
+
+
 });
