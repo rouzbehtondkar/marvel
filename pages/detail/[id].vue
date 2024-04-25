@@ -1,8 +1,26 @@
 <template >
-<div v-for="(item,i) in detailInfo" :key="i">
-  <span>{{item.name}}</span>
+  <div class="w-[100%] h-[30vh] bg-black text-white">
 
-</div>
+<!--      <button class="bg-red">LOGO</button>-->
+      <div v-for="(item,i) in detailInfo" :key="i">
+        <div class="flex w-[100%] pl-[10px] gap-[20px] items-center ">
+          <div class="w-[80%] flex flex-col pt-[80px]   " dir="ltr">
+            <span class="font-bold text-[30px]">{{item.name}}</span>
+            <span>{{item.description}}</span>
+          </div>
+          <div class="w-[20%] flex   ">
+            <img :src="item.thumbnail.path + '.' + item.thumbnail.extension" alt="Character Thumbnail"
+                 class=" w-[50%] pt-[40px]  rounded-lg">
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+
 </template>
 <script setup lang="ts">
 import {useMarvelStore} from '~/stores/useMarvelStore ';
@@ -36,8 +54,8 @@ const marvelsDetail = async (characterId) => {
             try {
                 const response = await axios.get(createURL());
 
-              detailInfo.value=response.data.data.results[0].comics.items
-              console.log(response.data.data.results[0].comics.items[0].name)
+              detailInfo.value=response.data.data.results
+              console.log(response.data)
 
             } catch (error) {
                 console.error(error);
