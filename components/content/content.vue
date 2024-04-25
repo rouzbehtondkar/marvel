@@ -24,7 +24,7 @@
       </div>
     </div>
 <!--    section about pagenation-->
-    <div class=" flex justify-center mt-4 pb-[40px]">
+    <div class=" bg-gray-800 flex justify-center mt-4 pb-[40px]">
       <button
           v-for="page in totalPages"
           :key="page"
@@ -53,6 +53,7 @@ const marvelStore = useMarvelStore();
 const currentPage = ref(1);
 const itemsPerPage = 6;
 
+
 //run data from backend
 onMounted(() => {
   marvelStore.fetchCharacters();
@@ -62,6 +63,7 @@ onMounted(() => {
 const searchCharacters = async () => {
   try {
     await marvelStore.fetchCharacters(searchTerm.value);
+    searchTerm.value = '';
 
   } catch (error) {
     console.error('Error searching characters:', error);
@@ -72,6 +74,10 @@ const searchCharacters = async () => {
 const filteredCharacters = computed(() => {
   return marvelStore.characters.filter(character => character.name.toLowerCase().includes(searchTerm.value.toLowerCase()));
 });
+
+
+
+
 
 const totalPages = computed(() => {
   return Math.ceil(filteredCharacters.value.length / itemsPerPage);
@@ -87,9 +93,9 @@ const changePage = (page) => {
   currentPage.value = page;
 };
 
-const loadSpecificCharacter = async (characterId) => {
-  specificCharacter.value = await marvelStore.fetchCharacterById(characterId);
-};
+// const loadSpecificCharacter = async (characterId) => {
+//   specificCharacter.value = await marvelStore.fetchCharacterById(characterId);
+// };
 </script>
 
 <style scoped>

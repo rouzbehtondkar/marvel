@@ -11,3 +11,23 @@ p, h2, h3, h4, h5, h6, span, a {
 h1 {
   font-family: YekanBakh-Bold;
 }
+@media screen and (max-width: 600px) {
+  .detailInfo_res{
+    display: flex !important;
+    flex-direction: column-reverse !important ;
+  }
+  .detailInfo_img_res{
+    width: 80% !important;
+  }
+  .logo_res{
+    margin-right: 80%!important;
+  }
+  .img_section{
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .section_btn{
+    display: flex !important;
+    justify-content: center !important;
+  }
+}

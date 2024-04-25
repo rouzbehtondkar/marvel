@@ -39,93 +39,11 @@ body {
   border-radius: 2px;
 }
 
-.social-footer{
-  border: 1px solid #2CA5E0;
-}
-.social-footer-wathsapp{
-  border: 1px solid #4AAE20;
-}
-
-.g-15{
-  gap: 15px;
-}
-.d-flex{
-  display: flex;
-}
-.flex-col{
-  flex-direction: column;
-}
-.w-50{
-  width: 50%;
-}
-.bg-yellow{
-  background: yellowgreen;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  row-gap: 12px;
-}
-.bg-property{
-  border-radius:20px;
-}
-
-.property >
-.section:nth-child(1) >
-.bg-property{
-  background-color:#F1EFFF;
-
-}
-.property >
-.section:nth-child(2) >
-.bg-property{
-  background-color:#F8F0F9;
-
-}
-.property >
-.section:nth-child(3) >
-.bg-property{
-  background-color:#F8F0F9;
-
-}
-
-.property >
-.section:nth-child(4) >
-.bg-property{
-  background-color:#FFE0D9;
-
-}
-
-.property >
-.section:nth-child(5) >
-.bg-property{
-  background-color:#FFF6DB;
-
-}
-
-.property >
-.section:nth-child(6) >
-.bg-property{
-  background-color:#EAF8F3;
-
-}
-.property >
-.section:nth-child(7) >
-.bg-property{
-  background-color:#E7FAE3;
-
-}
-.main-menu-header{
-  border-bottom: 1px solid #f1f1f1;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-position: relative !important;
+.btn-custom {
+  border: 1px solid white;
+  padding-top: 15px;
+  border-radius: 15px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
 }

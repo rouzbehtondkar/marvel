@@ -1,17 +1,31 @@
 <template>
-  <div class="w-[100%] h-[30vh] bg-black text-white">
+  <div class="w-[100%] h-[120vh] bg-black text-white">
 
-    <!--      <button class="bg-red">LOGO</button>-->
+    <button class="bg-red md:mr-[88%] mt-[20px] logo_res">LOGO</button>
     <div v-for="(item,i) in detailInfo" :key="i">
-      <div class="flex w-[100%] pl-[10px] gap-[20px] pb-[40px] items-center ">
-        <div class="w-[80%] flex flex-col pt-[80px]   " dir="ltr">
+      <div class="flex w-[100%] pl-[10px] gap-[20px] pb-[40px] items-center detailInfo_res ">
+        <div class="w-[80%] flex flex-col md:pt-[80px]" dir="ltr">
           <span class="font-bold text-[30px]">{{ item.name }}</span>
           <span>{{ item.description }}</span>
+        <div class=" flex section_btn  justify-start  gap-5 pt-[10px]">
+          <button class="btn-custom flex justify-between items-center gap-2">
+            <img src="~/assets/img/export.png" alt="Comic Link" />
+            Details</button>
+          <button class="btn-custom  flex  justify-center gap-5 ">
+            <img src="~/assets/img/export.png" alt="Comic Link" />
+            wiki</button>
+
+          <button class="btn-custom  flex  justify-center gap-5 ">
+            <img src="~/assets/img/export.png" alt="Comic Link" />comiclink</button>
+
         </div>
-        <div class="w-[20%] flex   ">
+        </div>
+
+        <div class="md:w-[20%] flex img_section">
           <img :src="item.thumbnail.path + '.' + item.thumbnail.extension" alt="Character Thumbnail"
-               class=" w-[50%] pt-[40px]  rounded-lg">
+               class=" w-[50%] pt-[40px] rounded-lg detailInfo_img_res">
         </div>
+
       </div>
     </div>
     <!--    section info-->
@@ -104,7 +118,6 @@ const marvelsComic = async (characterId) => {
   const publicKey = '2dadec700ec19acae6022f02802c1593';
   const privateKey = 'e9970b149457a34b075505ddb0818f29e1a9430b';
   const apiBaseURL = "https://gateway.marvel.com/v1/public/";
-
   function createURL() {
     const ts = Date.now();
     const params = new URLSearchParams({
