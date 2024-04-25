@@ -15,7 +15,7 @@
     <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
 
 <!--      show data from backend-->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" dir="ltr">
         <div v-for="(item, i) in displayedCharacters" :key="i" class="bg-gray-700 text-white p-4 rounded-lg shadow-lg">
           <img :src="item.thumbnail.path + '.' + item.thumbnail.extension" alt="Character Thumbnail"
                class="w-full h-[269px] object-cover rounded-lg">
