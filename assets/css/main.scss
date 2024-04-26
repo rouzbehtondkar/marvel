@@ -11,7 +11,9 @@ p, h2, h3, h4, h5, h6, span, a {
 h1 {
   font-family: YekanBakh-Bold;
 }
+// responsive in size mobile
 @media screen and (max-width: 600px) {
+  // responsive header detail info character
   .detailInfo_res{
     display: flex !important;
     flex-direction: column-reverse !important ;
@@ -30,4 +32,5 @@ h1 {
     display: flex !important;
     justify-content: center !important;
   }
+
 }
