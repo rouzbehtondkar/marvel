@@ -100,12 +100,11 @@ const displayedCharacters = computed(() => {
 const changePage = (page) => {
   currentPage.value = page;
 };
-console.log(currentPage.value)
+
 
 </script>
 
 <style scoped>
-//gradiant for header
 .gradient-circle-red {
   background-image: linear-gradient(to right, rgb(136, 0, 0) 1%, black 10%);
   background-position: left center;
