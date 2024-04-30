@@ -3,7 +3,7 @@
 
 
 <content />
-
+<slider class="pt-[5%] " />
 </div>
 </template>
 

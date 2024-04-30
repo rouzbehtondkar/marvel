@@ -31,7 +31,8 @@
 
       </div>
     </div>
-    <!--    section info for comics and series-->
+
+    <!--    section info for comics -->
     <div class="bg-gray-800 h-[80vh]">
       <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
 

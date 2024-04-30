@@ -7,6 +7,8 @@ export const useMarvelStore = defineStore({
     id: 'marvel',
     state: () => ({
         characters: [],
+        user:null,
+        loginError: null,
     }),
     actions: {
         async fetchCharacters() {
@@ -25,6 +27,7 @@ export const useMarvelStore = defineStore({
                 const endpoint = `${apiBaseURL}/characters?`;
                 return endpoint + params;
             }
+
             try {
                 const response = await axios.get(createURL());
                 this.characters = response.data.data.results;
@@ -32,9 +35,29 @@ export const useMarvelStore = defineStore({
             } catch (error) {
                 console.error('Error fetching characters:', error);
             }
+        }, async loginUser(username, password) {
+            try {
+                const response = await axios.post('https://dummyjson.com/auth/login', {
+                    username: username,
+                    password: password,
+                    expiresInMins: 30,
+                });
+                if (response.data.success) {
+
+                    this.user = response.data;
+                    this.loginError = null;
+                    setTimeout(() => {
+                        console.log(this.user); // چاپ مقادیر user بعد از تنظیم
+                    }, 0);
+                } else {
+                    this.loginError = response.data.message;
+                }
+            } catch (error) {
+                this.loginError = 'An error occurred while logging in.';
+
+            }
+
         },
-
     },
-
 
 });

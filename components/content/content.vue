@@ -11,6 +11,9 @@
     </div>
   </div>
   <!--  content card Characters -->
+<!--  <div class="bg-gray-500 h-[80vh] w-[100%]">-->
+<!--<slider/>-->
+<!--  </div>-->
   <div class="bg-gray-800 h-[80vh]">
     <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
 
