@@ -26,13 +26,14 @@
 <script setup lang="ts">
 import {useMarvelStore} from "~/stores/useMarvelStore ";
 import { useRouter } from 'vue-router';
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import axios from 'axios';
 const marvelStore=useMarvelStore();
 const username = ref('');
 const password = ref('');
 const expiresInMins = ref(30);
 const router = useRouter();
+
 async function login() {
 
   axios.post('https://dummyjson.com/auth/login', {
@@ -42,12 +43,15 @@ async function login() {
   })
       .then(response => {
         console.log(response.data);
+        const token=response.data.token
+        localStorage.setItem('authToken', token)
+        console.log(token)
         Swal.fire({
           icon: 'success',
           title: 'Success!',
           text: 'Login successful.',
         });
-        router.push('/');
+        router.push('/landing');
       })
       .catch(error => {
         console.error('Error:', error);
@@ -59,7 +63,9 @@ async function login() {
       });
 
 }
-
+definePageMeta({
+  middleware:'auth'
+})
 </script>
 
 <style scoped>

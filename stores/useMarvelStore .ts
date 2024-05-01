@@ -2,6 +2,9 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import md5 from 'md5';
+import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 export const useMarvelStore = defineStore({
     id: 'marvel',
@@ -36,26 +39,22 @@ export const useMarvelStore = defineStore({
                 console.error('Error fetching characters:', error);
             }
         }, async loginUser(username, password) {
-            try {
-                const response = await axios.post('https://dummyjson.com/auth/login', {
-                    username: username,
-                    password: password,
-                    expiresInMins: 30,
+
+
+            const res= await  axios.post('https://dummyjson.com/auth/login', {
+                username: username,
+                password: password,
+                expiresInMins: 30, // optional, defaults to 60
+
+            })
+                .then(response => {
+                    console.log(response.data);
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
                 });
-                if (response.data.success) {
-
-                    this.user = response.data;
-                    this.loginError = null;
-                    setTimeout(() => {
-                        console.log(this.user); // چاپ مقادیر user بعد از تنظیم
-                    }, 0);
-                } else {
-                    this.loginError = response.data.message;
-                }
-            } catch (error) {
-                this.loginError = 'An error occurred while logging in.';
-
-            }
 
         },
     },
