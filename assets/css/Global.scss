@@ -1,11 +1,13 @@
 @import 'fonts.scss';
 *{
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 body {
   width: 100%;
   height: auto;
-  direction: rtl !important;
+
   font-family: Vazirmatn;
 }
 .bg-blue{

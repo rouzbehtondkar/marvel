@@ -10,7 +10,7 @@ export const useMarvelStore = defineStore({
     id: 'marvel',
     state: () => ({
         characters: [],
-        user:null,
+        user:'',
         loginError: null,
     }),
     actions: {
@@ -39,24 +39,20 @@ export const useMarvelStore = defineStore({
                 console.error('Error fetching characters:', error);
             }
         }, async loginUser(username, password) {
-
-
-            const res= await  axios.post('https://dummyjson.com/auth/login', {
-                username: username,
-                password: password,
-                expiresInMins: 30, // optional, defaults to 60
-
-            })
-                .then(response => {
-                    console.log(response.data);
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-
+            try {
+                const response = await axios.post('https://dummyjson.com/auth/login', {
+                    username: username,
+                    password: password,
+                    expiresInMins: 30,
                 });
-
+                this.user = response.data;
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error:', error);
+                this.loginError = error.message;
+            }
         },
     },
+
 
 });

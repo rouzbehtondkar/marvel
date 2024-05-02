@@ -14,7 +14,7 @@
 <!--  <div class="bg-gray-500 h-[80vh] w-[100%]">-->
 <!--<slider/>-->
 <!--  </div>-->
-  <div class="bg-gray-800 h-[80vh]">
+  <div class="bg-gray-800 h-[100vh]">
     <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
       <nuxt-link class="bg-green text-white text-[50px]" to="/login">login</nuxt-link>
 <!--      show data from backend-->
@@ -51,6 +51,8 @@
 
 
 <script setup lang="ts">
+
+
 //import files from vue and component
 import {useMarvelStore} from '~/stores/useMarvelStore ';
 import {ref,computed,watchEffect } from 'vue';
@@ -63,7 +65,9 @@ const currentPage = ref(1);
 const itemsPerPage = 6;
 const searchClicked = ref(false);
 
-
+definePageMeta({
+  layout:'home-layout'
+})
 //run data from backend
 onMounted(() => {
   marvelStore.fetchCharacters();

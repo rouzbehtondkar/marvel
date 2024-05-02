@@ -1,15 +1,15 @@
 <template>
-<div class="d-flex  flex-col w-[100%] ">
-
-
-<content />
-<slider class="pt-[5%] " />
+<div class="w-[100%]   ">
+<div class=" w-[100%] flex flex-col">
+  <content />
+  <slider/>
+</div>
 </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "home-layout",
+  layout:'home-layout'
 })
 </script>
 <style scoped>

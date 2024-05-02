@@ -15,16 +15,23 @@
                   class="text-white pt-[20px] bg-pink px-[30px]  py-[16px] flex items-center justify-center mb-[80px]"
                   :title="Enter">
             Enter
+
           </button>
+
+
         </div>
 
-
+<!--        <sidbar :email="loginEmail" :name="loginName" :img="loginImg" />-->
       </div>
     </div>
+
+
   </div>
 </template>
 <script setup lang="ts">
 import {useMarvelStore} from "~/stores/useMarvelStore ";
+import { ref, defineEmits } from 'vue';
+import sidbar from "~/components/layouts/sidbar.vue"
 import { useRouter } from 'vue-router';
 import Swal from "sweetalert2";
 import axios from 'axios';
@@ -33,38 +40,39 @@ const username = ref('');
 const password = ref('');
 const expiresInMins = ref(30);
 const router = useRouter();
+const loginEmail = ref(null);
+const loginName = ref(null);
+const loginImg = ref(null);
 
 async function login() {
-
-  axios.post('https://dummyjson.com/auth/login', {
-    username: username.value,
-    password: password.value,
-    expiresInMins: 30, // optional, defaults to 60
-  })
-      .then(response => {
-        console.log(response.data);
-        const token=response.data.token
-        localStorage.setItem('authToken', token)
-        console.log(token)
-        Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Login successful.',
-        });
-        router.push('/landing');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Password is incorrect!',
-        });
-      });
+await marvelStore.loginUser(username.value,password.value);
+console.log(marvelStore.user.token)
+  if (marvelStore.user) {
+    // کاربر با موفقیت وارد شد
+    const token = marvelStore.user.token;
+    localStorage.setItem('authToken', token);
+    console.log(token);
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: 'Login successful.',
+    });
+    router.push('/landing');
+  } else {
+    // خطا در ورود کاربر
+    console.error(marvelStore.loginError);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Password is incorrect!',
+    });
+  }
 
 }
+
 definePageMeta({
-  middleware:'auth'
+  middleware:'auth',
+
 })
 </script>
 

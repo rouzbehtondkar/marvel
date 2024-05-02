@@ -11,7 +11,9 @@
       <button @click="prevSlide" class="prev">Prev</button>
       <button @click="nextSlide" class="next">Next</button>
     </div>
-    <modals/>
+ <div class="w-[100%] flex justify-center pt-[40px]">
+   <modals/>
+ </div>
   </div>
 </template>
 
