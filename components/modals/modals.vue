@@ -49,7 +49,7 @@ onMounted(async ()=>{
 
 })
 const data =marvelImg.characters;
-console.log (data)
+// console.log (data)
 
 
 </script>

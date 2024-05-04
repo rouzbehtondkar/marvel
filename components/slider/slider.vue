@@ -53,7 +53,7 @@ watch([ slideIndex,()=>marvelImg.characters], () => {
   if (slides.value[slideIndex.value]) {
     slides.value[slideIndex.value].classList.add("displaySlide");
   };
-  console.log (marvelImg.characters)
+  // console.log (marvelImg.characters)
 });
 
 

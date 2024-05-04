@@ -11,6 +11,7 @@ export const useMarvelStore = defineStore({
     state: () => ({
         characters: [],
         user:'',
+        userInfo:'',
         loginError: null,
     }),
     actions: {
@@ -38,7 +39,8 @@ export const useMarvelStore = defineStore({
             } catch (error) {
                 console.error('Error fetching characters:', error);
             }
-        }, async loginUser(username, password) {
+        },
+        async loginUser(username, password) {
             try {
                 const response = await axios.post('https://dummyjson.com/auth/login', {
                     username: username,
@@ -52,6 +54,19 @@ export const useMarvelStore = defineStore({
                 this.loginError = error.message;
             }
         },
+        async fetchUser(token) {
+            try {
+                const response = await axios.get('https://dummyjson.com/auth/me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+                this.userInfo = response.data;
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        }
     },
 
 

@@ -40,18 +40,16 @@ const username = ref('');
 const password = ref('');
 const expiresInMins = ref(30);
 const router = useRouter();
-const loginEmail = ref(null);
-const loginName = ref(null);
-const loginImg = ref(null);
+
 
 async function login() {
 await marvelStore.loginUser(username.value,password.value);
-console.log(marvelStore.user.token)
+// console.log(marvelStore.user.token)
   if (marvelStore.user) {
-    // کاربر با موفقیت وارد شد
     const token = marvelStore.user.token;
-    localStorage.setItem('authToken', token);
-    console.log(token);
+
+    localStorage.setItem('userInfo', JSON.stringify(marvelStore.userInfo));
+    await marvelStore.fetchUser(token);
     Swal.fire({
       icon: 'success',
       title: 'Success!',

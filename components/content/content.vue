@@ -16,7 +16,7 @@
 <!--  </div>-->
   <div class="bg-gray-800 h-[100vh]">
     <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
-      <nuxt-link class="bg-green text-white text-[50px]" to="/login">login</nuxt-link>
+
 <!--      show data from backend-->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" dir="ltr">
         <div v-for="(item, i) in displayedCharacters" :key="i" class="bg-gray-700 text-white p-4 rounded-lg shadow-lg">
