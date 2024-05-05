@@ -13,6 +13,7 @@ export const useMarvelStore = defineStore({
         user:'',
         userInfo:'',
         loginError: null,
+        products:[],
     }),
     actions: {
         async fetchCharacters() {
@@ -66,7 +67,68 @@ export const useMarvelStore = defineStore({
             } catch (error) {
                 console.error('Error fetching user:', error);
             }
-        }
+        },
+        async product() {
+
+            try {
+                 const response= await  axios.get('https://dummyjson.com/products' , {
+                 });
+                this.products=response.data;
+                // console.log(response.data);
+            }catch (error) {
+                console.log ('Error ftching proudact' , error);
+            }
+        },
+        async productDelete(id) {
+            try {
+                const response = await axios.delete(`https://dummyjson.com/products/${id}`, {
+                    headers: {
+
+                    }
+                });
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error deleting product:', error);
+            }
+        },
+        async productPut(id, title, category, price) {
+            try {
+                const response = await axios.put(`https://dummyjson.com/products/${id}`, {
+
+                    title: title,
+                    category: category,
+                    price: price,
+
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error updating product:', error);
+            }
+        },
+
+        async productAdd(id, title, category, price) {
+            try {
+                const response = await axios.post('https://dummyjson.com/products/add', {
+
+                    title: title,
+                    category: category,
+                    price: price,
+
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error updating product:', error);
+            }
+        },
+
     },
 
 

@@ -21,7 +21,6 @@ const marvelStore = useMarvelStore();
 const userInfo = ref({});
 const token = marvelStore.user.token;
 onMounted(() => {
-  // بررسی کردن اینکه آیا مقدار 'userInfo' در localStorage وجود دارد یا خیر
   const storedUserInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
   if (Object.keys(storedUserInfo).length > 0) {
     userInfo.value = storedUserInfo;
