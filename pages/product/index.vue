@@ -5,7 +5,7 @@
   <div class="w-[100%]  flex items-center justify-center flex-col mx-auto container font-bold pt-[40px]"  >
 
     <span class="pb-[20px]">به صفحه محصولات خوش آمدید</span>
-    <button @click="addProduct()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-[90%]">
+    <button @click="addProduct()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded md:mr-[90%] sm:mr-[80%]">
       Add
     </button>
     <table   class="table-auto w-full mb-[60px]">
@@ -19,11 +19,11 @@
       </thead>
       <tbody v-for="(item, i) in localProducts" :key="i">
       <tr >
-        <td class="border md:px-4 md:py-2 flex flex-col  items-center justify-center">
-          <button  @click="deleteProduct(item.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold md:py-2 md:px-4 rounded ml-[20%] ">
+        <td class="border md:px-4 md:py-2 flex flex-col  items-center justify-center gap-[4px]">
+          <button  @click="deleteProduct(item.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold md:py-2 md:px-4 rounded  ">
             Delete
           </button>
-          <button @click="editProduct(item)"  class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold md:py-2 md:px-4 rounded ml-2">
+          <button @click="editProduct(item)"  class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold md:py-2 md:px-4 rounded ">
             Put
           </button>
 
@@ -43,48 +43,62 @@
 
       </tbody>
     </table>
-    <div v-if="isModalOpen" class="modal-backdrop">
-      <div class="modal-content">
-        <h2>ویرایش محصول</h2>
-        <form @submit.prevent="updateProduct">
-          <label>
-            عنوان:
-            <input v-model="selectedProduct.title" type="text"  required class="w-[100%]" />
-          </label>
-          <label>
-            دسته‌بندی:
-            <input v-model="selectedProduct.category" type="text" required class="w-[100%]" />
-          </label>
-          <label>
-            قیمت:
-            <input v-model="selectedProduct.price" type="number" required class="w-[100%]" />
-          </label>
-          <button class="btn_style" type="submit">به‌روزرسانی</button>
-          <button type="button" @click="closeModal" class="close-modal-btn">بستن</button>
-        </form>
-      </div>
+    <div class="w-[100%] bg-gray-400">
+      <modalProduct
+          :isOpen="isModalOpen"
+          :product="selectedProduct"
+          @submit="updateProduct"
+          @close="closeModal"
+      />
+      <modalProduct
+          :isOpen="ModalOpens"
+          :product="moreProduct"
+          @submit="plusProduct"
+          @close="closeModals"
+      />
     </div>
-    <div v-if="ModalOpens" class="modal-backdrop">
-      <div class="modal-content">
-        <h2>ویرایش محصول</h2>
-        <form @submit.prevent="plusProduct">
-          <label>
-            عنوان:
-            <input v-model="moreProduct.title" type="text"  required class="w-[100%]" />
-          </label>
-          <label>
-            دسته‌بندی:
-            <input v-model="moreProduct.category" type="text" required class="w-[100%]" />
-          </label>
-          <label>
-            قیمت:
-            <input v-model="moreProduct.price" type="number" required class="w-[100%]" />
-          </label>
-          <button class="btn_style" type="submit">اضافه کردن محصول</button>
-          <button type="button" @click="closeModals" class="close-modal-btn">بستن</button>
-        </form>
-      </div>
-    </div>
+<!--    <div v-if="isModalOpen" class="modal-backdrop">-->
+<!--      <div class="modal-content">-->
+<!--        <h2>ویرایش محصول</h2>-->
+<!--        <form @submit.prevent="updateProduct">-->
+<!--          <label>-->
+<!--            عنوان:-->
+<!--            <input v-model="selectedProduct.title" type="text"  required class="w-[100%]" />-->
+<!--          </label>-->
+<!--          <label>-->
+<!--            دسته‌بندی:-->
+<!--            <input v-model="selectedProduct.category" type="text" required class="w-[100%]" />-->
+<!--          </label>-->
+<!--          <label>-->
+<!--            قیمت:-->
+<!--            <input v-model="selectedProduct.price" type="number" required class="w-[100%]" />-->
+<!--          </label>-->
+<!--          <button class="btn_style" type="submit">به‌روزرسانی</button>-->
+<!--          <button type="button" @click="closeModal" class="close-modal-btn">بستن</button>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div v-if="ModalOpens" class="modal-backdrop">-->
+<!--      <div class="modal-content">-->
+<!--        <h2>ویرایش محصول</h2>-->
+<!--        <form @submit.prevent="plusProduct">-->
+<!--          <label>-->
+<!--            عنوان:-->
+<!--            <input v-model="moreProduct.title" type="text"  required class="w-[100%]" />-->
+<!--          </label>-->
+<!--          <label>-->
+<!--            دسته‌بندی:-->
+<!--            <input v-model="moreProduct.category" type="text" required class="w-[100%]" />-->
+<!--          </label>-->
+<!--          <label>-->
+<!--            قیمت:-->
+<!--            <input v-model="moreProduct.price" type="number" required class="w-[100%]" />-->
+<!--          </label>-->
+<!--          <button class="btn_style" type="submit">اضافه کردن محصول</button>-->
+<!--          <button type="button" @click="closeModals" class="close-modal-btn">بستن</button>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 
 </div>
@@ -94,6 +108,7 @@
 
 <script setup lang="ts">
  import {useMarvelStore} from "~/stores/useMarvelStore ";
+ import modalProduct from  '../../components/modalProduct/modalProduct.vue'
  import { watchEffect } from 'vue';
  import { onMounted, ref } from 'vue';
  const marvelStores=useMarvelStore();
