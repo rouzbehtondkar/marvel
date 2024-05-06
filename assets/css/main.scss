@@ -34,3 +34,12 @@ h1 {
   }
 
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none !important;
+  }
+  .sliders{
+    display: none !important;
+  }
+}

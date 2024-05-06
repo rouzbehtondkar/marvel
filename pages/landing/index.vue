@@ -1,7 +1,7 @@
 <template>
 <div class="w-[100%]">
 <div class=" w-[100%] flex flex-col">
-  <content />
+  <content  />
   <slider/>
 </div>
 </div>

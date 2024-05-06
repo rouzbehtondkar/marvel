@@ -5,13 +5,13 @@
   <div class="w-[100%]  flex items-center justify-center flex-col mx-auto container font-bold pt-[40px]"  >
 
     <span class="pb-[20px]">به صفحه محصولات خوش آمدید</span>
-    <button @click="addProduct()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-[80%] ">
+    <button @click="addProduct()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-[90%]">
       Add
     </button>
     <table   class="table-auto w-full mb-[60px]">
       <thead>
       <tr>
-        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">options</th>
         <th class="px-4 py-2">Name</th>
         <th class="px-4 py-2">Category</th>
         <th class="px-4 py-2">Price</th>
@@ -19,17 +19,22 @@
       </thead>
       <tbody v-for="(item, i) in localProducts" :key="i">
       <tr >
-        <td class="border px-4 py-2">{{ item.id }}</td>
-        <td class="border px-4 py-2">{{ item.title }}</td>
-        <td class="border px-4 py-2">{{ item.category }}</td>
-        <td class="border px-4 py-2 ">{{ item.price }}</td>
+        <td class="border md:px-4 md:py-2 flex flex-col  items-center justify-center">
+          <button  @click="deleteProduct(item.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold md:py-2 md:px-4 rounded ml-[20%] ">
+            Delete
+          </button>
+          <button @click="editProduct(item)"  class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold md:py-2 md:px-4 rounded ml-2">
+            Put
+          </button>
+
+        </td>
+        <td class="border md:px-4 md:py-2">{{ item.title }}</td>
+        <td class="border md:px-4 md:py-2">{{ item.category }}</td>
+        <td class="border md:px-4 md:py-2 ">{{ item.price }}</td>
+
+
      <td>
-       <button  @click="deleteProduct(item.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-[20%] ">
-         Delete
-       </button>
-       <button @click="editProduct(item)"  class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded ml-2">
-         Put
-       </button>
+
 
      </td>
 
@@ -152,7 +157,7 @@
 
  const plusProduct = async () => {
    try {
-     await marvelStores.productAdd(selectedProduct.value.title, selectedProduct.value.category, selectedProduct.value.price);
+     await marvelStores.productAdd(moreProduct.value.title, moreProduct.value.category, moreProduct.value.price);
      const newProduct = {
        id: localProducts.value.length + 1,
        title: moreProduct.value.title,
@@ -224,6 +229,8 @@ input {
 }
 
 .close-modal-btn:hover {
-  background-color: #c82333; /* رنگ پس‌زمینه در حالت موس روی آن */
+  background-color: #c82333;
 }
+
+
 </style>

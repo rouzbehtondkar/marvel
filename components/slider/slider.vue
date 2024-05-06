@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-800 w-[100%] h-[100vh]"  >
+  <div  class="bg-gray-800 w-[100%] h-[100vh] sliders"  >
     <div class="slider w-[100%] justify-center items-center ">
       <div class="slides flex flex-col gap-[20px] justify-center items-center ">
         <img v-for="(item, i) in marvelImg.characters" :key="i" :src="item.thumbnail.path + '.' + item.thumbnail.extension" alt="Image" class="slid" >

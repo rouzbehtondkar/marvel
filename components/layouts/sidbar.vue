@@ -1,12 +1,12 @@
 
 <template>
-<div class="w-[100%] h-[220vh] flex flex-col pt-[50px] bg-blue-500" >
+<div  class="w-[100%] h-[220vh] flex flex-col pt-[50px] bg-blue-500 sidebar" >
   <div class="flex flex-col items-center gap-[20px]" >
     <img :src="userInfo.image" class="rounded w-[80px]">
     <span class="text-black font-bold   rounded-[10px] p-[12px]">{{ userInfo.email}}</span>
     <span class="text-black font-bold   rounded-[10px] p-[12px]">{{ userInfo.firstName}} {{ userInfo.age}}</span>
     <button class="text-black font-bold bg-gray-400 outline rounded-[10px] p-[12px] mt-4" @click="logout">Log Out</button>
-    <nuxt-link class="text-black font-bold bg-gray-400 outline rounded-[10px] p-[12px] mt-4" @click="showAlert" to="/login">login</nuxt-link>
+    <nuxt-link class="text-black font-bold bg-gray-400 outline rounded-[10px] p-[12px] mt-4" @click="showAlert" to="/">login</nuxt-link>
 
   </div>
 </div>

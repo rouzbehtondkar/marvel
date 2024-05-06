@@ -1,10 +1,10 @@
 <template>
   <!--  search and header-->
-  <div class="w-[100%] h-[20vh] text-white gradient-circle-red">
-    <div class="w-[100%] flex justify-end pl-[165px] pt-[7px]">
-      <nuxt-link class="bg-pink-600 rounded  text-black font-bold mr-[20px] p-[30px] flex justify-center items-center" to="/product" >محصولات</nuxt-link>
+  <div class="w-[100%] h-[20vh]  pb-[20px] text-white gradient-circle-red flex flex-col justify-center items-center gap-[20px]  ">
+    <div class="w-[100%]  flex justify-end pl-[165px] pt-[20px] ">
+      <nuxt-link class="bg-pink-600 rounded  text-black font-bold md:mr-[20px] mr-[70%] md:p-[20px] flex justify-center items-center" to="/product" >محصولات</nuxt-link>
     </div>
-    <div class="w-[80%] p-[12px] mr-[10%] mt-[15px] rounded-[8px] bg-[#2C2E30] flex justify-center items-center">
+    <div class="w-[80%]  p-[12px]   rounded-[8px] bg-[#2C2E30] flex justify-start items-center ">
       <button @click="searchCharacters" class="bg-red ml-[10px]">Search</button>
       <input v-model="searchTerm" class="w-[90%] h-[48px] bg-[#3B3D3F] text-left"
              placeholder="Searching for characters">
@@ -14,7 +14,7 @@
 <!--  <div class="bg-gray-500 h-[80vh] w-[100%]">-->
 <!--<slider/>-->
 <!--  </div>-->
-  <div class="bg-gray-800 h-[100vh]">
+  <div class="bg-gray-800 h-[100vh] ">
     <div class="w-full bg-gray-800 flex flex-col items-center justify-center p-4">
 
 <!--      show data from backend-->
