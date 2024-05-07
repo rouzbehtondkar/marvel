@@ -5,6 +5,12 @@
   <div class="w-[100%]  flex items-center justify-center flex-col mx-auto container font-bold pt-[40px]"  >
 
     <span class="pb-[20px]">به صفحه محصولات خوش آمدید</span>
+    <div class="flex gap-[5px] items-center justify-center pb-[10px] pr-[70%] search-container">
+      <input class="search-input" v-model="searchQuery" type="text" placeholder="Search products" >
+      <button class="search-button" @click="searchProducts">Search</button>
+
+
+    </div>
     <button @click="addProduct()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded md:mr-[90%] sm:mr-[80%]">
       Add
     </button>
@@ -57,48 +63,7 @@
           @close="closeModals"
       />
     </div>
-<!--    <div v-if="isModalOpen" class="modal-backdrop">-->
-<!--      <div class="modal-content">-->
-<!--        <h2>ویرایش محصول</h2>-->
-<!--        <form @submit.prevent="updateProduct">-->
-<!--          <label>-->
-<!--            عنوان:-->
-<!--            <input v-model="selectedProduct.title" type="text"  required class="w-[100%]" />-->
-<!--          </label>-->
-<!--          <label>-->
-<!--            دسته‌بندی:-->
-<!--            <input v-model="selectedProduct.category" type="text" required class="w-[100%]" />-->
-<!--          </label>-->
-<!--          <label>-->
-<!--            قیمت:-->
-<!--            <input v-model="selectedProduct.price" type="number" required class="w-[100%]" />-->
-<!--          </label>-->
-<!--          <button class="btn_style" type="submit">به‌روزرسانی</button>-->
-<!--          <button type="button" @click="closeModal" class="close-modal-btn">بستن</button>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div v-if="ModalOpens" class="modal-backdrop">-->
-<!--      <div class="modal-content">-->
-<!--        <h2>ویرایش محصول</h2>-->
-<!--        <form @submit.prevent="plusProduct">-->
-<!--          <label>-->
-<!--            عنوان:-->
-<!--            <input v-model="moreProduct.title" type="text"  required class="w-[100%]" />-->
-<!--          </label>-->
-<!--          <label>-->
-<!--            دسته‌بندی:-->
-<!--            <input v-model="moreProduct.category" type="text" required class="w-[100%]" />-->
-<!--          </label>-->
-<!--          <label>-->
-<!--            قیمت:-->
-<!--            <input v-model="moreProduct.price" type="number" required class="w-[100%]" />-->
-<!--          </label>-->
-<!--          <button class="btn_style" type="submit">اضافه کردن محصول</button>-->
-<!--          <button type="button" @click="closeModals" class="close-modal-btn">بستن</button>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
+
   </div>
 
 </div>
@@ -119,6 +84,17 @@
  const ModalOpens = ref(false);
  const selectedProduct = ref({});
  const moreProduct = ref({});
+ const searchQuery=ref('')
+ const searchProduct = ref([]);
+
+
+ const searchProducts=()=>{
+   marvelStores.searchProducts(searchQuery.value)
+   localProducts.value = marvelStores.searchResults.products;
+ }
+ watch(searchQuery, () => {
+   searchProducts();
+ });
 
 
  const closeModal = () => {
@@ -133,7 +109,10 @@
    await  marvelStores.product();
    localProducts.value = marvelStores.products.products;
 
+
+
  });
+
  const deleteProduct = async (id) => {
    isDeletingProduct.value = true;
    try {
@@ -145,7 +124,6 @@
    } finally {
      isDeletingProduct.value = false;
    }
-
  };
  const addProduct = () => {
    moreProduct.value = {};
@@ -247,5 +225,37 @@ input {
   background-color: #c82333;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
 
 </style>

@@ -14,8 +14,10 @@ export const useMarvelStore = defineStore({
         userInfo:'',
         loginError: null,
         products:[],
+        searchResults: [],
     }),
     actions: {
+
         async fetchCharacters() {
             const publicKey = '2dadec700ec19acae6022f02802c1593';
             const privateKey = 'e9970b149457a34b075505ddb0818f29e1a9430b';
@@ -109,7 +111,6 @@ export const useMarvelStore = defineStore({
                 console.error('Error updating product:', error);
             }
         },
-
         async productAdd(id, title, category, price) {
             try {
                 const response = await axios.post('https://dummyjson.com/products/add', {
@@ -128,6 +129,16 @@ export const useMarvelStore = defineStore({
                 console.error('Error updating product:', error);
             }
         },
+        async searchProducts (query) {
+            try {
+                const response = await  axios.get (`https://dummyjson.com/products/search?q=${query}`);
+                this.searchResults=response.data;
+                console.log(response.data)
+
+            }catch (error) {
+                console.log('Error searching products:', error)
+            }
+        }
 
     },
 
