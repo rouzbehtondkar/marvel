@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
 
   devtools: { enabled: true },
@@ -9,14 +10,16 @@ export default defineNuxtConfig({
     '~/assets/css/Global.scss',
     '~/assets/css/size.scss',
     '~/assets/scss/color.sass',
-    "~/assets/css/tailwind.css"
+    "~/assets/css/tailwind.css",
   ],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   modules: [
     '@pinia/nuxt',
     'nuxt-swiper',
@@ -24,4 +27,6 @@ export default defineNuxtConfig({
   ], router: {
     middleware: ['auth']
   }
+
+
 })

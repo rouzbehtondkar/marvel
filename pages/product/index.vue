@@ -109,8 +109,6 @@
    await  marvelStores.product();
    localProducts.value = marvelStores.products.products;
 
-
-
  });
 
  const deleteProduct = async (id) => {

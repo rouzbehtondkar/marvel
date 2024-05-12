@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@nuxt/devtools": "^1.2.0",
     "@ocrv/vue-tailwind-pagination": "^0.0.4",
     "@pinia/nuxt": "^0.5.1",
@@ -32,5 +33,7 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3"
+
+
   }
 }

@@ -28,7 +28,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import {useMarvelStore} from "~/stores/useMarvelStore ";
+import {useMarvelStore} from '~/stores/useMarvelStore '
 import { ref, defineEmits } from 'vue';
 import sidbar from "~/components/layouts/sidbar.vue"
 import { useRouter } from 'vue-router';

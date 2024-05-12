@@ -81,6 +81,9 @@ export const useMarvelStore = defineStore({
                 console.log ('Error ftching proudact' , error);
             }
         },
+
+
+
         async productDelete(id) {
             try {
                 const response = await axios.delete(`https://dummyjson.com/products/${id}`, {

@@ -85,10 +85,15 @@ onMounted(() => {
 // };
 
 // funcation filter for search
-const filteredCharacters = computed(() => {
-  if (!searchClicked) return [] ;
-  return marvelStore.characters.filter(character => character.name.toLowerCase().includes(searchTerm.value.toLowerCase()));
-});
+
+const filteredCharacters=computed(()=>{
+  if(!searchClicked) return [];
+  return marvelStore.characters.filter(character =>character.name.toLowerCase().includes(searchTerm.value.toLowerCase()));
+})
+// const filteredCharacters = computed(() => {
+//   if (!searchClicked) return [] ;
+//   return marvelStore.characters.filter(character => character.name.toLowerCase().includes(searchTerm.value.toLowerCase()));
+// });
 
 
 // funcation pagenation for number page
